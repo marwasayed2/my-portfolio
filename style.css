@@ -268,13 +268,28 @@ body.dark-mode .navbar {
     font-size: 4rem;
     margin-bottom: 20px;
   }
-  
-  .text-gradient {
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+.text-gradient {
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+.block-on-mobile {
+  display: inline-block; 
+}
+
+@media (max-width: 576px) {
+  .block-on-mobile {
+    display: block;
+    margin-top: 5px; 
   }
+  
+  .heading-line {
+    display: block;
+  }
+}
   
   .typewriter h2 {
     font-size: 2rem;
@@ -692,76 +707,126 @@ body.dark-mode .navbar {
     }
   }
 
-  /* Timeline Style */
+/* Timeline - Fixed Dot Positioning */
 .timeline {
-    position: relative;
+  position: relative;
+  max-width: 100%;
+  padding: 40px 20px;
+  margin: 0 auto;
+}
+
+/* Vertical Line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  width: 3px;
+  background: var(--primary-color);
+  top: 0;
+  bottom: 0;
+  left: 30px; /* Adjusted for better alignment */
+}
+
+/* Timeline Items */
+.timeline-item {
+  position: relative;
+  padding-left: 70px; /* Increased for dot space */
+  margin-bottom: 40px;
+}
+
+/* Dot Marker - Fixed Position */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 22px; /* Perfectly aligned with timeline */
+  top: 5px; /* Aligned with date */
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid var(--primary-color);
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+/* Date Styling - Fixed Alignment */
+.timeline-date {
+  position: relative;
+  display: inline-block;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 15px;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  left: -15px; /* Adjust to align with dot */
+}
+
+/* Content Box */
+.timeline-content {
+  padding: 20px;
+  text-align: left;
+  background: rgba(255,255,255,0.95);
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* Desktop View (≥992px) */
+@media (min-width: 992px) {
+  .timeline {
     max-width: 800px;
-    margin: 0 auto;
     padding: 40px 0;
   }
   
   .timeline::before {
-    content: '';
-    position: absolute;
-    width: 2px;
-    background: var(--primary-color);
-    top: 0;
-    bottom: 0;
     left: 50%;
     margin-left: -1px;
   }
   
   .timeline-item {
-    padding: 10px 40px;
-    position: relative;
     width: 50%;
-    box-sizing: border-box;
+    padding: 10px 40px;
   }
   
   .timeline-item:nth-child(odd) {
     left: 0;
+    text-align: right;
   }
   
   .timeline-item:nth-child(even) {
     left: 50%;
-  }
-  
-  .timeline-content {
-    padding: 20px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-  }
-  
-  .timeline-content:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    text-align: left;
   }
   
   .timeline-date {
     position: absolute;
     width: 120px;
-    background: var(--primary-color);
-    color: white;
-    border-radius: 20px;
-    padding: 5px 10px;
-    text-align: center;
-    font-weight: bold;
-  }
-  
-  .timeline-item:nth-child(odd) .timeline-date {
-    right: -140px;
     top: 20px;
+    left: auto;
+    right: -140px;
   }
   
   .timeline-item:nth-child(even) .timeline-date {
     left: -140px;
-    top: 20px;
+    right: auto;
   }
-
-
+  
+  .timeline-item::before {
+    left: 50%;
+    top: 25px;
+    margin-left: -8px;
+  }
+  
+  .timeline-item:nth-child(odd)::before {
+    right: -8px;
+    left: auto;
+  }
+  
+  .timeline-item:nth-child(even)::before {
+    left: -8px;
+  }
+}
 .animated-gradient {
     position: fixed;
     top: 0;
@@ -1229,3 +1294,38 @@ body.dark-mode .navbar {
   .dark-mode .skill-item:hover {
     background: rgba(106, 17, 203, 0.3);
   }
+
+  /* Footer Styles */
+.footer {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px 0;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.dark-mode .footer {
+  background: rgba(30, 30, 30, 0.9);
+}
+
+.footer-text {
+  display: inline-block;
+  margin: 0;
+  padding: 0 10px;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  white-space: nowrap; 
+}
+
+.dark-mode .footer-text {
+  color: var(--text-light);
+}
+
+@media (max-width: 576px) {
+  .footer-text {
+    font-size: 0.8rem;
+    white-space: normal; 
+    word-break: keep-all; 
+  }
+}
