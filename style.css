@@ -127,10 +127,11 @@
   transition: all 0.3s ease;
 }
 
-.dark-mode .navbar {
-  background: rgba(30, 30, 30, 0.9);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+body.dark-mode .navbar {
+  background: rgba(30, 30, 30, 0.95) !important; 
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
+
 
 .nav-container {
   max-width: 1200px;
@@ -162,8 +163,8 @@
   transition: all 0.3s ease;
 }
 
-.dark-mode .nav-link {
-  color: var(--primary-color);
+.dark-mode  .nav-menu   .nav-link {
+  color: var(--text-light);
 }
 
 .nav-link::after {
@@ -761,7 +762,6 @@
   }
 
 
-  /* الخلفية المتحركة */
 .animated-gradient {
     position: fixed;
     top: 0;

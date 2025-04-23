@@ -28,6 +28,24 @@ toggleModeBtn.addEventListener('click', () => {
   }
 });
 
+// Check for saved theme preference
+document.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('theme') === 'dark' || 
+      (!localStorage.getItem('theme') && 
+       window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.body.classList.add('dark-mode');
+    updateNavbarDarkMode();
+  }
+});
+
+function updateNavbarDarkMode() {
+  const navbar = document.querySelector('.navbar');
+  if (document.body.classList.contains('dark-mode')) {
+    navbar.style.background = 'rgba(30, 30, 30, 0.95)';
+  } else {
+    navbar.style.background = 'rgba(255, 255, 255, 0.9)';
+  }
+}
 // Custom Cursor
 const cursor = document.querySelector('.custom-cursor');
 
